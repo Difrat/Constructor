@@ -19,7 +19,7 @@ async def dynamic_table(request):
 
 
 async def handle_form(request):
-    with open('form.html', encoding='utf-8') as f:
+    with open('templates/form.html', encoding='utf-8') as f:
         return web.Response(text=f.read(), content_type='text/html')
 
 
