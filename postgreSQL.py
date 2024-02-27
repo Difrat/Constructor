@@ -14,14 +14,15 @@ class DataBaseManager():
     async def create_pool(self):
         self.pool = await asyncpg.create_pool(user='postgres', password='GEl2Few#@;', database='const_db',
                                               host='localhost')
-#ID SERIAL PRIMARY KEY, NAME TEXT NOT NULL, COUNT INT NOT NULL, CELL TEXT NOT NULL, DATE DATE NOT NULL
+
+    # ID SERIAL PRIMARY KEY, NAME TEXT NOT NULL, COUNT INT NOT NULL, CELL TEXT NOT NULL, DATE DATE NOT NULL
     async def create_table(self, name: str, datatype: str):
         await self.pool.execute(
             f'CREATE TABLE IF NOT EXISTS {name}({datatype});')
         await self.pool.close()
 
     async def insert_into_table(self, name_itme, count_item, cell_item):
-        await self.pool.execute('INSERT INTO stock (name, count, cell, date) VALUES ($1, $2, $3, CURRENT_DATE)',
+        await self.pool.execute('INSERT INTO new_table (name, count, cell, date) VALUES ($1, $2, $3, CURRENT_DATE)',
                                 name_itme,
                                 count_item, cell_item)
         await self.pool.close()
